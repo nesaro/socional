@@ -1,7 +1,3 @@
-PRIVATE=0
-TRUSTED=1
-PUBLIC=2
-PRIVACY_LEVELS={PRIVATE, TRUSTED, PUBLIC}
 
 
 def local_search(string, privacy_level=PRIVATE):
@@ -24,17 +20,5 @@ def public_search(string):
     pass
 
 
-def search_endpoint(string):
-    """For a given requester, returns the search result in our own database"""
-    documents = local_search(string, privacy_level=PRIVATE)
-    return documents
 
 
-def trusted_search_endpoint(string, requester):
-    try:
-        requester_key = Trust.objects.get(id=requester)
-    except Trust.DoesNotExist():
-        return 403
-    documents = local_search(string, privacy_level=TRUSTED)
-    encrypted_documents = requester_key.encrypt(documents)
-    return encrypted_documents
