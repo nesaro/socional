@@ -1,12 +1,6 @@
 from django.db import models
+from .domain import PRIVACY_LEVEL_CHOICES
 
-PRIVATE=0
-TRUSTED=1
-PUBLIC=2
-PRIVACY_LEVELS={PRIVATE, TRUSTED, PUBLIC}
-PRIVACY_LEVEL_CHOICES=(('PRIVATE', PRIVATE),
-                       ('TRUSTED', TRUSTED),
-                       ('PUBLIC', PUBLIC))
 
 class Document(models.Model):
     content = models.TextField(db_index=True)

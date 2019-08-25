@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .domain import local_search, PRIVATE
 
 def edit_document(request, document_name):
     pass
@@ -6,10 +7,13 @@ def edit_document(request, document_name):
 def local_search_or_create(request):
     pass
 
-def search_endpoint(string):
+def search_endpoint(request):
     """For a given requester, returns the search result in our own database"""
-    documents = local_search(string, privacy_level=PRIVATE)
-    return documents
+    string = request.GET.get('q')
+    documents = []
+    if string:
+        documents = local_search(string, privacy_level=PRIVATE)
+    return render(request, 'socional/search.html', {'documents':documents})
 
 def trusted_search_endpoint(string, requester):
     try:

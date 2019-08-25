@@ -1,4 +1,10 @@
-
+PRIVATE=0
+TRUSTED=1
+PUBLIC=2
+PRIVACY_LEVELS={PRIVATE, TRUSTED, PUBLIC}
+PRIVACY_LEVEL_CHOICES=(('PRIVATE', PRIVATE),
+                       ('TRUSTED', TRUSTED),
+                       ('PUBLIC', PUBLIC))
 
 def local_search(string, privacy_level=PRIVATE):
     """Returns a list of tuples (filename, snippet)
