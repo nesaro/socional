@@ -3,6 +3,7 @@ from .domain import PRIVACY_LEVEL_CHOICES
 
 
 class Document(models.Model):
+    name = models.CharField(max_length=512, unique=True)
     content = models.TextField(db_index=True)
     privacy = models.PositiveSmallIntegerField(choices=PRIVACY_LEVEL_CHOICES)
 
