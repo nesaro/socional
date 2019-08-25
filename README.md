@@ -42,11 +42,11 @@ A node is defined by a URL and posibly by a uuid. It runs a http server (possibl
 
 Every node can manage which nodes does it trust or follow. 
 
-##trust
+## trust
 
 That host is allowed to search through shared notes to your host. Trust might include some public-private key
 
-##follow
+## follow
 
 That host is used for public searches . If they trust this node they will share their shared notes
 
