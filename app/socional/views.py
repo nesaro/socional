@@ -1,11 +1,23 @@
 from django.shortcuts import render
 from .domain import local_search, PRIVATE
+from .models import Document
 
-def edit_document(request, document_name):
-    pass
+def edit(request):
+    document_name = request.GET.get('name')
+    try:
+        document = Document.objects.get(name=document_name)
+    except Document.DoesNotExist:
+        document = None
+    if request.method == 'POST':
+        content = request.POST['content']
+        document, _ = Document.objects.update_or_create(name=document_name,
+                                                        defaults={'privacy':PRIVATE,
+                                                                  'content':content})
+    return render(request, 'socional/edit.html', {'document':document})
 
 def local_search_or_create(request):
     pass
+
 
 def search_endpoint(request):
     """For a given requester, returns the search result in our own database"""
@@ -13,7 +25,10 @@ def search_endpoint(request):
     documents = []
     if string:
         documents = local_search(string, privacy_level=PRIVATE)
-    return render(request, 'socional/search.html', {'documents':documents})
+    else:
+        documents = Document.objects.all()
+    return render(request, 'socional/search.html', {'query':string,
+                                                    'documents':documents})
 
 def trusted_search_endpoint(string, requester):
     try:

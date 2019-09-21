@@ -1,7 +1,12 @@
 <html>
     <form>
-        <input type="text" name="q"/>
+        <input type="text" value="{{query}}" name="q"/>
         <input type="submit" value="search"/>
     </form>
-    {{ documents }}
+    <ul>
+    {% for document in documents %}
+    <li><a href="{% url 'edit' %}?name={{ document.name }}">{{document.name}}</a></li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'edit' %}?name={{query}}">Create</a>
 </html>

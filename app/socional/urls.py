@@ -20,4 +20,5 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.search_endpoint),
+    path('edit', views.edit, name='edit'),
 ]

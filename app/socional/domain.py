@@ -1,3 +1,4 @@
+from django.db.models import Q
 PRIVATE=0
 TRUSTED=1
 PUBLIC=2
@@ -10,7 +11,9 @@ def local_search(string, privacy_level=PRIVATE):
     """Returns a list of tuples (filename, snippet)
     fzf output
     """
-    pass
+    from .models import Document
+    return list(Document.objects.filter(Q(name__contains=string)|Q(content__contains=string)))
+    
 
 
 def trusted_search(string):
