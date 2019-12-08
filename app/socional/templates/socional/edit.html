@@ -1,5 +1,7 @@
 <form method="POST">
 {% csrf_token %}
-<input type="textarea" name="content" value="{{document.content}}">
-<input type="submit" value="Submit">
+<textarea rows="24" cols="80" name="content" >
+{{document.content}}
+</textarea>
+<input type="submit" value="Submit" />
 </form>
