@@ -1,2 +1,2 @@
 django
-
+PyRSS2Gen==1.1
