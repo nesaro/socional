@@ -1,9 +1,12 @@
 # Idea
 
-Have a online notational velocity clone. Each note can be 
+An online notational velocity clone. A federated note system.
+
+Each note can be :
  * private (just for you)
  * shared (with the people you trust)
  * public (with everybody)
+
 
 # Modes
 
